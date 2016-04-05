@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MainController@index');
 
 Route::get('/hello', function () {
     return 'hello world';
@@ -26,3 +24,15 @@ Route::get('/test', 'TestController@getTestPage');
 Route::get('/test/middleware', ['middleware' => ['abcd'], function() {
 	echo 'progressing request';
 }]);
+
+
+/*
+Route::get('pages/aboutus', 'pageController@aboutus');
+Route::get('pages/location', 'pageController@location');
+Route::get('pages/copyright', 'pageController@copyright');
+*/
+Route::get('/pages/{pageId}', 'pageController@page');
+
+//Route::post('todo', 'TodoController@store');
+Route::post('todo/done/{id}','TodoController@done');
+Route::resource('todo','TodoController');
